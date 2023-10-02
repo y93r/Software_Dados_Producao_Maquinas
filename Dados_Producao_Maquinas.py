@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from tkcalendar import DateEntry
+from tkinter import messagebox
 
 #Verficar se é um numero sendo digitado e limitar a 5 caracteres
 def validar_entrada(event, entry):
@@ -90,42 +91,72 @@ def remover_falha_selecionada():
         quantidades_falhas.pop(indice)  # Remove o item da lista de quantidades
         atualizar_total_falhas()
         
-#Função para coletar todos os dados da aba de produção e falhas
-def coletar_dados():
-    #Coletar dados da aba de produção
+# Função para verificar se todos os campos da aba de produção estão preenchidos
+def campos_producao_preenchidos():
     data = entry0.get()
     mat = entry1.get()
     maquina = combo.get()
     total_produzido = entry2.get()
     cliente = combo2.get()
     cod = combo3.get()
-
-    #Coletar dados da aba de falhas
-    #total_falhas = total_falhas
-    lista_falhas_selecionadas = lista_falhas.get(0, END)
     
-    #Calcular FPY (First Pass Yield)
-    def calcular_fpy():
-        try:
-            total_produzido_int = int(total_produzido)
-            total_falhas_int = int(total_falhas)
-            fpy_value = ((total_produzido_int - total_falhas_int) / total_produzido_int) * 100
-            return round(fpy_value, 2)
-        except (ValueError, ZeroDivisionError):
-            return "N/A"
+    # Verificar se algum campo obrigatório está vazio
+    if not (data and mat and maquina and total_produzido and cliente and cod):
+        return False
+    return True
         
-    
-    fpy = calcular_fpy()
-    #Retornar todos os dados coletados
-    falhas_texto = "\n".join(lista_falhas_selecionadas) # Crie uma string para as falhas, onde cada falha está em uma nova linha
+#Função para coletar todos os dados da aba de produção e falhas
+def coletar_dados():
+    if campos_producao_preenchidos():
+        #Coletar dados da aba de produção
+        data = entry0.get()
+        mat = entry1.get()
+        maquina = combo.get()
+        total_produzido = entry2.get()
+        cliente = combo2.get()
+        cod = combo3.get()
 
-    return f'''DATA: {data}\nMATRICULA: {mat}\nMÁQUINA: {maquina}\nCLIENTE: {cliente}\nCODIGO: {cod}
-    \nTOTAL PRODUZIDO: {total_produzido}\nFALHAS: {falhas_texto}\nTOTAL FALHAS: {total_falhas}\nFPY: {fpy}%'''
+        #Coletar dados da aba de falhas
+        #total_falhas = total_falhas
+        lista_falhas_selecionadas = lista_falhas.get(0, END)
+
+        #Calcular FPY (First Pass Yield)
+        def calcular_fpy():
+            try:
+                total_produzido_int = int(total_produzido)
+                total_falhas_int = int(total_falhas)
+                fpy_value = ((total_produzido_int - total_falhas_int) / total_produzido_int) * 100
+                return round(fpy_value, 2)
+            except (ValueError, ZeroDivisionError):
+                return "N/A"
+            
+        fpy = calcular_fpy()  
+        
+        #Calcular peças boas    
+        def calcular_pecas_boas():
+            try:
+                total_produzido_int = int(total_produzido)
+                total_falhas_int = int(total_falhas)
+                total_pecas_boas = total_produzido_int - total_falhas_int
+                return total_pecas_boas
+            except (ValueError):
+                return "N/A"
+
+        total_pecas_boas = calcular_pecas_boas()
+
+        #Retornar todos os dados coletados
+        falhas_texto = "\n".join(lista_falhas_selecionadas) # Crie uma string para as falhas, onde cada falha está em uma nova linha
+
+        return f'''DATA: {data}\nMATRICULA: {mat}\nMÁQUINA: {maquina}\nCLIENTE: {cliente}\nCODIGO: {cod}
+        \nTOTAL PRODUZIDO: {total_produzido}\nTOTAL PEÇAS BOAS: {total_pecas_boas}\nFALHAS: {falhas_texto}\nTOTAL FALHAS: {total_falhas}
+        \nFPY: {fpy}%'''
+            
+    else:
+        messagebox.showerror("Erro", "Todos os campos de produção devem ser preenchidos.") 
 
 # Função para exibir a janela de confirmação com os dados coletados
 janela_confirmacao = None  # Inicialize a variável global
 
-# Função para exibir a janela de confirmação com os dados coletados
 def exibir_janela_confirmacao():
     global janela_confirmacao  # Declare a variável como global
     dados = coletar_dados()
@@ -215,7 +246,6 @@ lbl5 = Label(tab1, text='CODIGO')
 lbl5.grid(column=0, row=6, padx=5, pady=5)
 combo3 = ttk.Combobox(tab1)  
 combo3.grid(column=1, row=6, padx=5, pady=5)
-
 
 #TOTAL PRODUZIDO
 lbl6 = Label(tab1, text='TOTAL PRODUZIDO')
