@@ -180,6 +180,10 @@ def exibir_janela_confirmacao():
     # Botão "Cancelar" para manter os dados
     botao_cancelar = Button(janela_confirmacao, text="Cancelar", command=janela_confirmacao.destroy)
     botao_cancelar.pack(side=RIGHT, padx=10, pady=10)
+    
+# Função para zerar o contador de total de falhas
+def zerar_total_falhas():
+    lbl_total_falhas.config(text='TOTAL FALHAS: 0')
 
 # Função para apagar os dados
 def apagar_dados():
@@ -190,6 +194,7 @@ def apagar_dados():
     combo1.set("")  #Limpar o ComboBox de MÁQUINA
     combo2.set("")  #Limpar o ComboBox de cliente
     combo3.set("")  #Limpar o ComboBox de cod
+    zerar_total_falhas()  # Zerar o contador de total de falhas
     combo_falhas.set("")  #Limpar o ComboBox de falhas
     janela_confirmacao.destroy()  # Fechar a janela de confirmação
         
@@ -251,7 +256,6 @@ lbl5.grid(column=0, row=6, padx=5, pady=5)
 combo3 = ttk.Combobox(tab1)  
 combo3.grid(column=1, row=6, padx=5, pady=5)
 
-
 #TOTAL PRODUZIDO
 lbl6 = Label(tab1, text='TOTAL PRODUZIDO')
 lbl6.grid(column=0, row=7, padx=5, pady=5)
@@ -267,7 +271,6 @@ botao_gravar.grid(column=0, row=8, columnspan=2, padx=5, pady=5)
 #QTDE
 lbl_total_falhas = Label(tab2,text='TOTAL FALHAS: 0')
 lbl_total_falhas.grid(column=0, row=1, padx=5, pady=5)
-
 
 # Falhas na aba Modo de falhas
 lbl_falhas = Label(tab2, text='MODO DE FALHA')
