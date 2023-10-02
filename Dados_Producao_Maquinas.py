@@ -97,7 +97,7 @@ def remover_falha_selecionada():
 def campos_producao_preenchidos():
     data = entry0.get()
     mat = entry1.get()
-    maquina = combo.get()
+    maquina = combo1.get()
     total_produzido = entry2.get()
     cliente = combo2.get()
     cod = combo3.get()
@@ -113,7 +113,8 @@ def coletar_dados():
         #Coletar dados da aba de produção
         data = entry0.get()
         mat = entry1.get()
-        maquina = combo.get()
+        turno = combo.get()
+        maquina = combo1.get()
         total_produzido = entry2.get()
         cliente = combo2.get()
         cod = combo3.get()
@@ -149,7 +150,8 @@ def coletar_dados():
         #Retornar todos os dados coletados
         falhas_texto = "\n".join(lista_falhas_selecionadas) # Crie uma string para as falhas, onde cada falha está em uma nova linha
 
-        return f'''DATA: {data}\nMATRICULA: {mat}\nMÁQUINA: {maquina}\nCLIENTE: {cliente}\nCODIGO: {cod}
+        return f'''DATA: {data}\nMATRICULA: {mat}\nMÁQUINA: {maquina}\nTURNO: {turno}
+        \nCLIENTE: {cliente}\nCODIGO: {cod}
         \nTOTAL PRODUZIDO: {total_produzido}\nTOTAL PEÇAS BOAS: {total_pecas_boas}\nFALHAS: {falhas_texto}\nTOTAL FALHAS: {total_falhas}
         \nFPY: {fpy}%'''
             
