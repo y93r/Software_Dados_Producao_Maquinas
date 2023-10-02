@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import ttk
 from tkcalendar import DateEntry
 from tkinter import messagebox
+import tkinter as tk
 
 #Verficar se é um numero sendo digitado e limitar a 5 caracteres
 def validar_entrada(event, entry):
@@ -109,83 +110,87 @@ def campos_producao_preenchidos():
         
 #Função para coletar todos os dados da aba de produção e falhas
 def coletar_dados():
-    if campos_producao_preenchidos():
-        #Coletar dados da aba de produção
-        data = entry0.get()
-        mat = entry1.get()
-        turno = combo.get()
-        maquina = combo1.get()
-        total_produzido = entry2.get()
-        cliente = combo2.get()
-        cod = combo3.get()
 
-        #Coletar dados da aba de falhas
-        #total_falhas = total_falhas
-        lista_falhas_selecionadas = lista_falhas.get(0, END)
+    #Coletar dados da aba de produção
+    data = entry0.get()
+    mat = entry1.get()
+    turno = combo.get()
+    maquina = combo1.get()
+    total_produzido = entry2.get()
+    cliente = combo2.get()
+    cod = combo3.get()
 
-        #Calcular FPY (First Pass Yield)
-        def calcular_fpy():
-            try:
-                total_produzido_int = int(total_produzido)
-                total_falhas_int = int(total_falhas)
-                fpy_value = ((total_produzido_int - total_falhas_int) / total_produzido_int) * 100
-                return round(fpy_value, 2)
-            except (ValueError, ZeroDivisionError):
-                return "N/A"
-            
-        fpy = calcular_fpy()  
-        
-        #Calcular peças boas    
-        def calcular_pecas_boas():
-            try:
-                total_produzido_int = int(total_produzido)
-                total_falhas_int = int(total_falhas)
-                total_pecas_boas = total_produzido_int - total_falhas_int
-                return total_pecas_boas
-            except (ValueError):
-                return "N/A"
+    #Coletar dados da aba de falhas
+    #total_falhas = total_falhas
+    lista_falhas_selecionadas = lista_falhas.get(0, END)
 
-        total_pecas_boas = calcular_pecas_boas()
+    #Calcular FPY (First Pass Yield)
+    def calcular_fpy():
+        try:
+            total_produzido_int = int(total_produzido)
+            total_falhas_int = int(total_falhas)
+            fpy_value = ((total_produzido_int - total_falhas_int) / total_produzido_int) * 100
+            return round(fpy_value, 2)
+        except (ValueError, ZeroDivisionError):
+            return "N/A"
 
-        #Retornar todos os dados coletados
-        falhas_texto = "\n".join(lista_falhas_selecionadas) # Crie uma string para as falhas, onde cada falha está em uma nova linha
+    fpy = calcular_fpy()  
 
-        return f'''DATA: {data}\nMATRICULA: {mat}\nMÁQUINA: {maquina}\nTURNO: {turno}
-        \nCLIENTE: {cliente}\nCODIGO: {cod}
-        \nTOTAL PRODUZIDO: {total_produzido}\nTOTAL PEÇAS BOAS: {total_pecas_boas}\nFALHAS: {falhas_texto}\nTOTAL FALHAS: {total_falhas}
-        \nFPY: {fpy}%'''
-            
-    else:
-        messagebox.showerror("Erro", "Todos os campos de produção devem ser preenchidos.") 
+    #Calcular peças boas    
+    def calcular_pecas_boas():
+        try:
+            total_produzido_int = int(total_produzido)
+            total_falhas_int = int(total_falhas)
+            total_pecas_boas = total_produzido_int - total_falhas_int
+            return total_pecas_boas
+        except (ValueError):
+            return "N/A"
 
-# Função para exibir a janela de confirmação com os dados coletados
+    total_pecas_boas = calcular_pecas_boas()
+
+    #Retornar todos os dados coletados
+    falhas_texto = "\n".join(lista_falhas_selecionadas) # Crie uma string para as falhas, onde cada falha está em uma nova linha
+
+    return f'''DATA: {data}\nMATRICULA: {mat}\nMÁQUINA: {maquina}\nTURNO: {turno}
+    \nCLIENTE: {cliente}\nCODIGO: {cod}
+    \nTOTAL PRODUZIDO: {total_produzido}\nTOTAL PEÇAS BOAS: {total_pecas_boas}\nFALHAS: {falhas_texto}\nTOTAL FALHAS: {total_falhas}
+    \nFPY: {fpy}%'''
+  
+
+#Função para exibir a janela de confirmação com os dados coletados
 janela_confirmacao = None  # Inicialize a variável global
 
 def exibir_janela_confirmacao():
     global janela_confirmacao  # Declare a variável como global
-    dados = coletar_dados()
     
-    # Criar uma nova janela de confirmação
-    janela_confirmacao = Toplevel()
-    janela_confirmacao.title("Conferir Dados")
-    
-    # Exibir os dados coletados na janela de confirmação
-    label_dados = Label(janela_confirmacao, text=dados, padx=10, pady=10)
-    label_dados.pack()
-    
-    # Botão "OK" para apagar os dados
-    botao_ok = Button(janela_confirmacao, text="OK", command=apagar_dados)
-    botao_ok.pack(side=LEFT, padx=10, pady=10)
-    
-    # Botão "Cancelar" para manter os dados
-    botao_cancelar = Button(janela_confirmacao, text="Cancelar", command=janela_confirmacao.destroy)
-    botao_cancelar.pack(side=RIGHT, padx=10, pady=10)
-    
-# Função para zerar o contador de total de falhas
+    if campos_producao_preenchidos():
+        dados = coletar_dados()
+
+        # Criar uma nova janela de confirmação
+        janela_confirmacao = Toplevel()
+        janela_confirmacao.title("Conferir Dados")
+
+        # Exibir os dados coletados na janela de confirmação
+        label_dados = Label(janela_confirmacao, text=dados, padx=10, pady=10)
+        label_dados.pack()
+
+        # Botão "OK" para apagar os dados
+        botao_ok = Button(janela_confirmacao, text="OK", command=apagar_dados)
+        botao_ok.pack(side=LEFT, padx=10, pady=10)
+
+        # Botão "Cancelar" para manter os dados
+        botao_cancelar = Button(janela_confirmacao, text="Cancelar", command=janela_confirmacao.destroy)
+        botao_cancelar.pack(side=RIGHT, padx=10, pady=10)
+     
+    else:
+        messagebox.showerror("Erro!", "Todos os campos de produção devem ser preenchidos.")     
+
+        
+#Função para zerar o contador de total de falhas
 def zerar_total_falhas():
     lbl_total_falhas.config(text='TOTAL FALHAS: 0')
 
-# Função para apagar os dados
+#Função para apagar os dados
 def apagar_dados():
     entry1.delete(0, END)
     entry2.delete(0, END)
@@ -299,5 +304,9 @@ lista_falhas.grid(column=0, row=5, columnspan=3, padx=5, pady=5)
 
 # Usar grid para o tab_control
 tab_control.grid(column=0, row=0, sticky='NSEW')
+
+# Crédito
+credit_label = tk.Label(janela, text='Desenvolvido por Yara de Oliveira Rufino', font=('Arial', 10), fg='gray')
+credit_label.grid(column=0, row=1, sticky='SE', padx=10, pady=10)
 
 janela.mainloop()
