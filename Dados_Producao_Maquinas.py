@@ -16,6 +16,8 @@ def limitar_entrada(event):
         entry1.delete(0, 'end')  # Limpe o conteúdo se não for um número válido
     if not validar_entrada(event, entry2):
         entry2.delete(0, 'end')
+    if not validar_entrada(event, quantidade_entry):
+        quantidade_entry.delete(0, 'end') 
 
 #Dicionário que mapeia cod de acordo com o cliente
 cliente_cod = {'CLIENTE 1': ['1234','4567','8901','2345','6789'],
@@ -247,6 +249,7 @@ lbl5.grid(column=0, row=6, padx=5, pady=5)
 combo3 = ttk.Combobox(tab1)  
 combo3.grid(column=1, row=6, padx=5, pady=5)
 
+
 #TOTAL PRODUZIDO
 lbl6 = Label(tab1, text='TOTAL PRODUZIDO')
 lbl6.grid(column=0, row=7, padx=5, pady=5)
@@ -274,6 +277,7 @@ combo_falhas.grid(column=1, row=2, padx=5, pady=5)
 lbl_quantidade = Label(tab2, text='QUANTIDADE')
 lbl_quantidade.grid(column=0, row=3, padx=5, pady=5)
 quantidade_entry = Entry(tab2)
+quantidade_entry.bind('<KeyRelease>', limitar_entrada)
 quantidade_entry.grid(column=1, row=3, padx=5, pady=5)
 
 #Botão para add falhas
