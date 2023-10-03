@@ -302,6 +302,11 @@ remover_button.grid(column=0, row=4, padx=5, pady=5)
 lista_falhas = Listbox(tab2)
 lista_falhas.grid(column=0, row=5, columnspan=3, padx=5, pady=5)
 
+#Barra de rolagem vertical
+scrollbar = Scrollbar(janela, orient=VERTICAL, command=lista_falhas.yview)
+scrollbar.grid(column=1, row=0,sticky='ns')
+lista_falhas.config(yscrollcommand=scrollbar.set) # Conecte a Listbox à barra de rolagem
+
 # Usar grid para o tab_control
 tab_control.grid(column=0, row=0, sticky='NSEW')
 
