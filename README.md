@@ -5,6 +5,13 @@ Criação de um software para coleta de dados de produção diário
 - Python 3.10.9
   - tkinter: 8.6 
   - tkcalendar: 1.5.0
+  - ttkthemes: 3.2.2
+ 
+  ## Instalação das bibliotecas
+```bash
+pip install tkcalendar
+pip install ttkthemes
+```
  
 ## AUTORA
 - [Yara De Oliveira Rufino](https://www.linkedin.com/in/yara-de-oliveira-rufino/)
