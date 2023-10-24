@@ -1,25 +1,33 @@
 # Software_Dados_Producao_Maquinas
-Criação de um software para coleta de dados de produção diário
+
+## HR X HR
+Criação de um software para coleta de dados de produção diária hora x hora das máquinas.
 
 ## TECNOLOGIAS USADAS:
 - Python 3.10.9
-  - tkinter: 8.6 
-  - tkcalendar: 1.5.0
-  - ttkthemes: 3.2.2
+  - tkinter==8.6 
+  - tkcalendar==1.5.0
+  - Pandas==1.5.3
+  - datetime==3.10.9
+  - openpyxl==3.1.2
+- Excel versão Microsoft 365
  
-  ## Instalação das bibliotecas
+## Instalação das bibliotecas
 ```bash
 pip install tkcalendar
-pip install ttkthemes
 ```
  
 ## AUTORA
 - [Yara De Oliveira Rufino](https://www.linkedin.com/in/yara-de-oliveira-rufino/)
 
 ## DESENVOLVIMENTO
-- Esta janela intergráfica tem como objetivo agilizar a anotação de dados de produção
-  - Na aba de produção o usuário deve colocar a data, matrícula, turno, máquina, cliente, código e o total produzido
-  - Na aba de falhas deverá colocar o modo de falha e a quantidade, a soma do total de falhas é feita automaticamente
-  - Há os botões de adicionar e remover falha, ao clicar no primeiro será acrescentado em uma lista o modo de falha e a quantidade. Ao clicar no segundo, a falha selecionada será retirada da lista
-  - Voltando a aba produção há o botão de gravar, sendo clicado abrirá outra janela para conferir os dados: data, matrícula, turno, máquina, cliente, código, total produzido, falhas, total falhas e fpy
-  - Caso algo não esteja correto o usuário tem a opção de apertar o botão de cancelar e corrigir o que está errado ou faltando. Se tudo estiver certo, ele pode apertar o botão OK, a janela se encerrará e todos os dados serão apagados.
+- Este software tem como objetivo simplificar as anotações HR x HR;
+  - Usando uma interface gráfica onde já é gerado a data atual e o dia da semana, caso o usuário queira trocar data, o dia da semana é atualizado simultaneamente;
+  - Há 2 listas onde o usuário deve escolher o turno e a máquina, essas 2 opções não podem ficar vazias se não o botão Gerar Hr x Hr irá te alertar dos campos vazios;
+  - Ao clilcar no botão Gerar Hr x Hr abrirá uma nova janela de acordo com as horas do turno selecionado;
+  - Nessa janela haverá as colunas "HR x HR", "MAT", "COD", "QTDE REAL", "Parada(em Min)", "Justificativa" e os campos vazios para o usuário digitar de acordo com a folha impressa;
+  - Os campos da colunas "MAT", "QTDE REAL" não podem ficar vazios se não o botão GRAVAR DADOS mostrará um alerta sobre isso;
+  - Todos os dados inseridos passaram por um processo no pandas para antes de salvar na planilha original ter as mesmas colunas e na mesma ordem;
+  - Os dados serão salvos na aba de acordo com a máquina selecionada ao clicar no botão GRAVAR;
+  - Após isso a nova janela se fechará.
+
