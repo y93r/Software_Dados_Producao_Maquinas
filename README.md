@@ -6,15 +6,20 @@ Criação de um software para coleta de dados de produção diária hora x hora 
 ## TECNOLOGIAS USADAS:
 - Python 3.10.9
   - tkinter==8.6 
-  - tkcalendar==1.5.0
-  - Pandas==1.5.3
+  - tkcalendar==1.6.1
+  - pandas==2.1.1
   - datetime==3.10.9
   - openpyxl==3.1.2
+  - Babel==2.13.1
+  - Pillow==10.1.0
 - Excel versão Microsoft 365
  
 ## Instalação das bibliotecas
 ```bash
 pip install tkcalendar
+pip install pyinstaller
+pip install Pillow
+
 ```
  
 ## AUTORA
