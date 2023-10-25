@@ -6,6 +6,7 @@ from tkinter import messagebox
 import tkinter as tk
 from datetime import datetime
 import pandas as pd
+from babel import numbers
 
 #Mapear os dias da semana para pt-Br
 def converter_dia_semana(dia_semana_ingles):
@@ -182,7 +183,7 @@ def gerar_hr_hr():
                 resposta = messagebox.askquestion("CONFIRMAÇÃO DE DADOS", "Deseja confirmar os dados?", icon="warning")
                 if resposta == "yes":
                     #Caminho do arquivo e salvar de acordo com a aba
-                    caminho = r'C:\Users\Usuário\Documents\DataScience\Projetos\Continental\Proeff_Software\AutoWerk\Downtime.xlsx'
+                    caminho = r'C:\Users\AutoWerk\Downtime.xlsx'
                     if combo1.get() == '1':
                         aba = 'M1'
                     elif combo1.get() == '2':
