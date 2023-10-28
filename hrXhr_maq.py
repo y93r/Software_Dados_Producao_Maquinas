@@ -6,7 +6,6 @@ from tkinter import messagebox
 import tkinter as tk
 from datetime import datetime
 import pandas as pd
-from babel import numbers
 
 #Mapear os dias da semana para pt-Br
 def converter_dia_semana(dia_semana_ingles):
@@ -72,7 +71,7 @@ def gerar_hr_hr():
 
         #Definir larguras personalizadas para as colunas
         largura_coluna_hr_hr = 5
-        largura_coluna_mat = 6
+        largura_coluna_mat = 10
         largura_coluna_cod = 6
         largura_coluna_qtde = 5
         largura_coluna_parada = 5
@@ -183,7 +182,7 @@ def gerar_hr_hr():
                 resposta = messagebox.askquestion("CONFIRMAÇÃO DE DADOS", "Deseja confirmar os dados?", icon="warning")
                 if resposta == "yes":
                     #Caminho do arquivo e salvar de acordo com a aba
-                    caminho = r'C:\Users\AutoWerk\Downtime.xlsx'
+                    caminho = r'C:\Users\Usuário\Documents\DataScience\Projetos\Continental\Proeff_Software\AutoWerk\Downtime.xlsx'
                     if combo1.get() == '1':
                         aba = 'M1'
                     elif combo1.get() == '2':
@@ -222,11 +221,34 @@ def gerar_hr_hr():
         #Adicionar um evento para atualizar a soma quando os valores forem modificados
         for i in range(linhas):
             campos[i][3].bind('<KeyRelease>', lambda event, i=i: atualizar_soma())
+            
+        #Função para copiar o MAT da primeira linha para as demais linhas
+        def copiar_mat():
+            mat_primeira_linha = campos[0][1].get()
+            for i in range(1, linhas):
+                campos[i][1].delete(0, tk.END)  #Limpar o campo de entrada, caso já haja um valor
+                campos[i][1].insert(0, mat_primeira_linha)
+
+        #BOTAO REPETIR MAT
+        botao_copiar_mat = tk.Button(nova_janela, text="Repetir MAT", command=copiar_mat) 
+        botao_copiar_mat.config(width=15, height=1)
+        botao_copiar_mat.grid(row=7 + linhas, column=1, columnspan=1, padx=5, pady=5)
+            
+        #Função para copiar o COD da primeira linha para as demais linhas
+        def copiar_cod():
+            cod_primeira_linha = combo_cod_values[0].get()
+            for i in range(1, linhas):
+                combo_cod_values[i].set(cod_primeira_linha)
+
+        #BOTAO REPETIR PN
+        botao_copiar_pn = tk.Button(nova_janela, text="REPETIR COD", command=copiar_cod) 
+        botao_copiar_pn.config(width=15, height=1)
+        botao_copiar_pn.grid(row=7 + linhas, column=2, columnspan=2, padx=5, pady=5) 
 
         #BOTAO GRAVAR DADOS
         botao_gravar = tk.Button(nova_janela, text="GRAVAR DADOS", command=funcao_de_gravacao) 
         botao_gravar.config(width=15, height=1)
-        botao_gravar.grid(row=7 + linhas, column=1, columnspan=colunas, padx=5, pady=5)
+        botao_gravar.grid(row=7 + linhas, column=3, columnspan=colunas, padx=5, pady=5)
     
 #==== INTERFACE ===
 janela = Tk()
