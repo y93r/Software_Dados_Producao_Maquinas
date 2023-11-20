@@ -53,12 +53,12 @@ def gerar_hr_hr():
 
         #Mapeia o dia da semana e o turno para as horas correspondentes
         horas_por_turno = {
-            '1T': [('06:00 - 07:00'), ('07:00 - 08:00'), ('08:00 - 09:00'), ('09:00 - 10:00'), ('10:00 - 11:00'),
-                   ('11:00 - 12:00'), ('12:00 - 13:00'), ('13:00 - 14:00')],
-            '2T': [('14:00 - 15:00'), ('15:00 - 16:00'), ('16:00 - 17:00'), ('17:00 - 18:00'), ('18:00 - 19:00'),
-                   ('19:00 - 20:00'), ('20:00 - 21:00'), ('21:00 - 22:00')],
-            '3T': [('22:00 - 23:00'), ('23:00 - 00:00'), ('00:00 - 01:00'),('01:00 - 02:00'), ('02:00 - 03:00'), 
-                   ('03:00 - 04:00'), ('04:00 - 05:00'), ('05:00 - 06:00')]
+            '1T': ['06:00 - 07:00', '07:00 - 08:00', '08:00 - 09:00', '09:00 - 10:00', '10:00 - 11:00',
+                   '11:00 - 12:00', '12:00 - 13:00', '13:00 - 14:00'],
+            '2T': ['14:00 - 15:00', '15:00 - 16:00', '16:00 - 17:00', '17:00 - 18:00', '18:00 - 19:00',
+                   '19:00 - 20:00', '20:00 - 21:00', '21:00 - 22:00'],
+            '3T': ['22:00 - 23:00', '23:00 - 00:00', '00:00 - 01:00','01:00 - 02:00', '02:00 - 03:00', 
+                   '03:00 - 04:00', '04:00 - 05:00', '05:00 - 06:00']
         }
         
         #Obter as horas correspondentes ao turno selecionado
@@ -70,7 +70,7 @@ def gerar_hr_hr():
         labels = ["HR x HR", "MAT", "COD", "QTDE REAL", "Parada(em Min)", "Justificativa"] #Criar os rotulos das colunas
 
         #Definir larguras personalizadas para as colunas
-        largura_coluna_hr_hr = 5
+        #largura_coluna_hr_hr = 5
         largura_coluna_mat = 10
         largura_coluna_cod = 6
         largura_coluna_qtde = 5
@@ -182,7 +182,7 @@ def gerar_hr_hr():
                 resposta = messagebox.askquestion("CONFIRMAÇÃO DE DADOS", "Deseja confirmar os dados?", icon="warning")
                 if resposta == "yes":
                     #Caminho do arquivo e salvar de acordo com a aba
-                    caminho = r'C:\Users\Usuário\Documents\DataScience\Projetos\Continental\Proeff_Software\AutoWerk\Downtime.xlsx'
+                    caminho = r'C:\Users\Usuário\Documents\DataScience\Projetos\AutoWerk\Downtime.xlsx'
                     if combo1.get() == '1':
                         aba = 'M1'
                     elif combo1.get() == '2':
@@ -273,14 +273,12 @@ entry0.bind("<<DateEntrySelected>>", atualizar_dia_da_semana)
 #TURNO
 lbl3 = Label(janela, text='TURNO')
 lbl3.grid(column=0, row=3, padx=5, pady=5, sticky='NSEW')
-combo = ttk.Combobox(janela)  
 combo = ttk.Combobox(janela, values=('1T', '2T', '3T'), state="readonly")
 combo.grid(column=1, row=3, padx=5, pady=5, sticky='NSEW')
 
 #MÁQUINA
 lbl4 = Label(janela, text='MÁQUINA')
 lbl4.grid(column=0, row=4, padx=5, pady=5, sticky='NSEW')
-combo1 = ttk.Combobox(janela)  
 combo1 = ttk.Combobox(janela, values=('1', '2', '3', '4', '5'), state="readonly")
 combo1.grid(column=1, row=4, padx=5, pady=5, sticky='NSEW')
 
