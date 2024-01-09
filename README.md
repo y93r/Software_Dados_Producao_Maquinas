@@ -22,7 +22,6 @@ pip install pyinstaller
 pip install tinydb
 pip install Pillow
 pip install pyinstaller==6.0.0
-pip install Pillow
 pip install babel
 ```
  
