@@ -25,8 +25,9 @@ pip install pyinstaller==6.0.0
 pip install babel
 ```
  
-## AUTORA
-- [Yara De Oliveira Rufino](https://www.linkedin.com/in/yara-de-oliveira-rufino/)
+## ARTIGOS
+[Parte 1](https://www.linkedin.com/pulse/fluxo-de-dados-da-interface-gr%2525C3%2525A1fica-at%2525C3%2525A9-visualiza%2525C3%2525A7%2525C3%2525A3o-yara-psehf%3FtrackingId=oxkh279SSeeQE88wBUmWZA%253D%253D/?trackingId=oxkh279SSeeQE88wBUmWZA%3D%3D) | 
+[Parte 2]()
 
 ## DESENVOLVIMENTO
 - Este software tem como objetivo simplificar as anotações HR x HR;
