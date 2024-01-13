@@ -205,7 +205,7 @@ def gerar_hr_hr():
                     dados_dict = df_atualizado.to_dict(orient='index')
 
                     #Caminho do arquivo e salvar de acordo com a aba
-                    caminho = r'C:\Users\Usuário\Documents\DataScience\Projetos\Continental\Proeff_Software\AutoWerk\Banco_de_dados\bd_hrxhr.json'
+                    caminho = r'C:AutoWerk\Ind4.0\Banco_de_dados\bd_hrxhr.json'
 
                     #Cria um banco de dados
                     db = tinydb.TinyDB(caminho)
