@@ -38,7 +38,7 @@ pip install babel
   - Para facilitar o preenchimento dos dados o botão "REPETIR COD" copia a primeira linha da coluna COD para as demais, assim como o botão "REPETIR MAT" para sua respectiva coluna;
   - Os campos da colunas "MAT", "QTDE REAL" não podem ficar vazios se não o botão GRAVAR DADOS mostrará um alerta sobre isso;
   - Os campos da coluna "Parada(Min)" não podem ser maiores que 60 minutos se não o botão GRAVAR DADOS mostrará um alerta sobre isso;
-  - Todos os dados inseridos vão passar por um processo no pandas que adiciona automaticamente cada linha que é preenchida a um DataFrame, converte as colunas QTDE REAL e Parada(em Min) em números inteiros, reordena e acrescenta as colunas de acordo os critérios estabelecidos e formata a data para o padrão brasileiro.
+  - Todos os dados inseridos vão passar por um processo no pandas que adiciona automaticamente cada linha que é preenchida a um DataFrame, converte a coluna Parada(em Min) em número inteiro, reordena e acrescenta as colunas de acordo os critérios estabelecidos e formata a data para o padrão brasileiro.
   - Os dados serão salvos ao clicar no botão GRAVAR em um documento chamado bd_hrxhr.json;
   - Após isso a nova janela se fechará.
 
