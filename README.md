@@ -18,7 +18,6 @@ Criação de um software para coleta de dados de produção diária hora x hora 
 ## Instalação das bibliotecas
 ```bash
 pip install tkcalendar
-pip install pyinstaller
 pip install tinydb
 pip install Pillow
 pip install pyinstaller==6.0.0
