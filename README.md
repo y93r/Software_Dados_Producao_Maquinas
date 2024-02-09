@@ -27,7 +27,7 @@ pip install babel
  
 ## ARTIGOS
 [Parte 1](https://www.linkedin.com/pulse/fluxo-de-dados-da-interface-gr%2525C3%2525A1fica-at%2525C3%2525A9-visualiza%2525C3%2525A7%2525C3%2525A3o-yara-psehf%3FtrackingId=oxkh279SSeeQE88wBUmWZA%253D%253D/?trackingId=oxkh279SSeeQE88wBUmWZA%3D%3D) | 
-[Parte 2]()
+[Parte 2](https://www.linkedin.com/pulse/fluxo-de-dados-da-interface-gr%2525C3%2525A1fica-at%2525C3%2525A9-visualiza%2525C3%2525A7%2525C3%2525A3o-yara-xwzrf%3FtrackingId=uIW1ncnLSBSJTbfr5QgSIw%253D%253D/?trackingId=uIW1ncnLSBSJTbfr5QgSIw%3D%3D)
 
 ## DESENVOLVIMENTO
 - Este software tem como objetivo simplificar as anotações HR x HR;
